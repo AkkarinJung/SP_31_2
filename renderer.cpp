@@ -56,8 +56,8 @@ ID3D11DepthStencilState* g_DepthStateDisable;
 #define RT_MAX (1)
 
 ID3D11Texture2D* ppTexture[RT_MAX];
-ID3D11RenderTargetView* g_PreRendertargetView[RT_MAX];
-ID3D11ShaderResourceView* g_PreShaderResourceView[RT_MAX];
+ID3D11RenderTargetView* g_PeRendertargetView[RT_MAX];
+ID3D11ShaderResourceView* g_PeShaderResourceView[RT_MAX];
 
 
 ID3D11Device* GetDevice( void )
@@ -382,7 +382,7 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		rtvd.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;//ピクセルフォーマット
 		rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 		g_D3DDevice->CreateRenderTargetView(ppTexture[0],
-			&rtvd, &g_PreRendertargetView[0]);
+			&rtvd, &g_PeRendertargetView[0]);
 
 		//シェーダーリソースビュー
 		D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
@@ -391,7 +391,7 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 		srvd.Texture2D.MipLevels = -1;//ミップマップ使う
 		g_D3DDevice->CreateShaderResourceView(ppTexture[0],
-			&srvd, &g_PreShaderResourceView[0]);
+			&srvd, &g_PeShaderResourceView[0]);
 		
 	}
 
@@ -415,8 +415,8 @@ void FinalizeRenderer(void)
 	for (int i = 0; i < RT_MAX; i++)
 	{
 		if (ppTexture[i]) ppTexture[i]->Release();
-		if (g_PreRendertargetView[i]) g_PreRendertargetView[i]->Release();
-		if (g_PreShaderResourceView[i]) g_PreShaderResourceView[i]->Release();
+		if (g_PeRendertargetView[i]) g_PeRendertargetView[i]->Release();
+		if (g_PeShaderResourceView[i]) g_PeShaderResourceView[i]->Release();
 	}
 
 	if( g_ImmediateContext )	g_ImmediateContext->ClearState();
@@ -529,17 +529,25 @@ void    SetCullMode(D3D11_CULL_MODE cull)
 }
 
 //指定のテクスチャをレンダリングターゲットへ設定してクリアー
-ID3D11ShaderResourceView* GetPreTexture(int no)
+ID3D11ShaderResourceView* GetPeTexture(int no)
 {
-	return g_PreShaderResourceView[no];
+	return g_PeShaderResourceView[no];
 }
 
 //指定のテクスチャをレンダリングターゲットへ設定してクリアー
 void BeginPe(int no)
 {
-	g_ImmediateContext->OMSetRenderTargets(1, &g_PreRendertargetView[no], g_DepthStencilView);
+	g_ImmediateContext->OMSetRenderTargets(1, &g_PeRendertargetView[no], g_DepthStencilView);
 	float    ClearColor[4] = { 0.5f, 0.0f, 0.0f, 1.0f };
-	g_ImmediateContext->ClearRenderTargetView(g_PreRendertargetView[no], ClearColor);
+	g_ImmediateContext->ClearRenderTargetView(g_PeRendertargetView[no], ClearColor);
 	g_ImmediateContext->ClearDepthStencilView(g_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+//=============================================================================
+// ミップマップ生成（3D描画が終わってからレンダリングテクスチャのMipMapを生成）
+//=============================================================================
+void GenerateMipsPe(int no)
+{
+	g_ImmediateContext->GenerateMips(g_PeShaderResourceView[no]);
 }
 

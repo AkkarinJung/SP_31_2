@@ -24,6 +24,8 @@
 #include	"Toon_2.h"
 #include	"Toon_3.h"
 
+#include	"Mosaic.h"
+
 
 
 //===============================================
@@ -47,6 +49,7 @@ Toon_1 Toon_1Model;
 Toon_2 Toon_2Model;
 Toon_3 Toon_3Model;
 
+Mosaic Mosaic_Model;
 
 
 static LIGHT Light;
@@ -73,7 +76,7 @@ void InitGame()
 	TextureInitialize(GetDevice());
 	InitCamera();
 
-	test2D.Init();
+	//test2D.Init();
 	//Field.Init();
 	BumpField.Init();
 	//Model.Init();
@@ -89,6 +92,7 @@ void InitGame()
 	//Toon_1Model.Init();
 	//Toon_2Model.Init();
 	//Toon_3Model.Init();
+	Mosaic_Model.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -128,7 +132,7 @@ void InitGame()
 void FinalizeGame()
 {
 	FinalizeCamera();
-	test2D.Finalize();
+	//test2D.Finalize();
 	//Field.Finalize(); 
 	BumpField.Finalize();
 	//Model.Finalize();
@@ -145,6 +149,8 @@ void FinalizeGame()
 	//Toon_2Model.Finalize();
 	//Toon_3Model.Finalize();
 
+	Mosaic_Model.Finalize();
+
 	TextureFinalize();
 }
 
@@ -156,7 +162,7 @@ void UpdateGame()
 	if (GetPause() == false)//ポーズ中でなければ更新実行
 	{
 		UpdateCamera();
-		test2D.Update();
+		//test2D.Update();
 		//Field.Update();
 		BumpField.Update();
 		//Model.Update();
@@ -172,6 +178,8 @@ void UpdateGame()
 		//Toon_1Model.Update();
 		//Toon_2Model.Update();
 		//Toon_3Model.Update();
+
+		Mosaic_Model.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -227,10 +235,12 @@ void DrawGame()
 		//Toon_2Model.Draw();
 		//Toon_3Model.Draw();
 	}
+	GenerateMipsPe();
 	Clear();
 	// 2D用マトリクス設定
 	{
 		SetWorldViewProjection2D();
-		test2D.Draw();
+		//test2D.Draw();
+		Mosaic_Model.Draw();
 	}
 }
