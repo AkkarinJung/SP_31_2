@@ -25,6 +25,7 @@
 #include	"Toon_3.h"
 
 #include	"Mosaic.h"
+#include	"RGBShift.h"
 
 
 
@@ -50,7 +51,7 @@ Toon_2 Toon_2Model;
 Toon_3 Toon_3Model;
 
 Mosaic Mosaic_Model;
-
+RGBShift RGBShift_Model;
 
 static LIGHT Light;
 //ポーズフラグ
@@ -92,7 +93,8 @@ void InitGame()
 	//Toon_1Model.Init();
 	//Toon_2Model.Init();
 	//Toon_3Model.Init();
-	Mosaic_Model.Init();
+	//Mosaic_Model.Init();
+	RGBShift_Model.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -149,7 +151,8 @@ void FinalizeGame()
 	//Toon_2Model.Finalize();
 	//Toon_3Model.Finalize();
 
-	Mosaic_Model.Finalize();
+	//Mosaic_Model.Finalize();
+	RGBShift_Model.Finalize();
 
 	TextureFinalize();
 }
@@ -179,7 +182,8 @@ void UpdateGame()
 		//Toon_2Model.Update();
 		//Toon_3Model.Update();
 
-		Mosaic_Model.Update();
+		//Mosaic_Model.Update();
+		RGBShift_Model.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -241,6 +245,7 @@ void DrawGame()
 	{
 		SetWorldViewProjection2D();
 		//test2D.Draw();
-		Mosaic_Model.Draw();
+		//Mosaic_Model.Draw();
+		RGBShift_Model.Draw();
 	}
 }

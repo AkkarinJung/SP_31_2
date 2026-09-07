@@ -69,6 +69,7 @@ void Mosaic::Update(void)
 	ImGui::Begin("Mosaic");
 	{
 		ImGui::SliderFloat("Size", &Parameter.z, 1.0f, 64.0f, "%0.0f");
+		ImGui::SliderFloat("Area", &Parameter.w, 0.0f, 0.7f, "%.2f");
 	}
 	ImGui::End();
 }
@@ -100,7 +101,7 @@ void Mosaic::Draw(void)
 	{//2Dポリゴン1枚ずつで必要な処理
 
 		//テクスチャをセット
-		ID3D11ShaderResourceView* tex = GetTexture(TexID);
+		ID3D11ShaderResourceView* tex = GetPeTexture();
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）
