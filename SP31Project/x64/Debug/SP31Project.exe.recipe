@@ -37,6 +37,12 @@
       <FullPath>C:\Users\pro19\Desktop\SP31_2\HemiSphereLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\horrorPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\horrorVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
       <FullPath>C:\Users\pro19\Desktop\SP31_2\LimLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
@@ -65,6 +71,12 @@
     </ContentFile>
     <ContentFile>
       <FullPath>C:\Users\pro19\Desktop\SP31_2\PointPixelLightingVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\poterizePS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\poterizeVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
       <FullPath>C:\Users\pro19\Desktop\SP31_2\RGBShiftPS.cso</FullPath>

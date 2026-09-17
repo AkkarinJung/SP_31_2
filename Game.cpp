@@ -27,6 +27,7 @@
 #include	"Mosaic.h"
 #include	"RGBShift.h"
 #include	"Horror.h"
+#include	"posterise.h"
 
 
 
@@ -54,6 +55,7 @@ Toon_3 Toon_3Model;
 Mosaic Mosaic_Model;
 RGBShift RGBShift_Model;
 Horror Horror_Model;
+posterise posterise_Model;
 
 static LIGHT Light;
 //ポーズフラグ
@@ -97,7 +99,8 @@ void InitGame()
 	//Toon_3Model.Init();
 	//Mosaic_Model.Init();
 	//RGBShift_Model.Init();
-	Horror_Model.Init();
+	//Horror_Model.Init
+	posterise_Model.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -156,7 +159,8 @@ void FinalizeGame()
 
 	//Mosaic_Model.Finalize();
 	//RGBShift_Model.Finalize();
-	Horror_Model.Finalize();
+	//Horror_Model.Finalize();
+	posterise_Model.Finalize();
 
 	TextureFinalize();
 }
@@ -188,7 +192,8 @@ void UpdateGame()
 
 		//Mosaic_Model.Update();
 		//RGBShift_Model.Update();
-		Horror_Model.Update();
+		//Horror_Model.Update();
+		posterise_Model.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -252,6 +257,7 @@ void DrawGame()
 		//test2D.Draw();
 		//Mosaic_Model.Draw();
 		//RGBShift_Model.Draw();
-		Horror_Model.Draw();
+		//Horror_Model.Draw();
+		posterise_Model.Draw();
 	}
 }
