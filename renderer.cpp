@@ -53,12 +53,12 @@ XMMATRIX				g_ProjectionMatrix;
 ID3D11DepthStencilState* g_DepthStateEnable;
 ID3D11DepthStencilState* g_DepthStateDisable;
 
-#define RT_MAX (1)
+#define RT_MAX (2)
 
 ID3D11Texture2D* ppTexture[RT_MAX];
 ID3D11RenderTargetView* g_PeRendertargetView[RT_MAX];
 ID3D11ShaderResourceView* g_PeShaderResourceView[RT_MAX];
-
+ID3D11Buffer* g_WeightBuffer = NULL;
 
 ID3D11Device* GetDevice( void )
 {
@@ -307,6 +307,11 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	//サンプラーをシェーダーへセット
 	g_ImmediateContext->PSSetSamplers( 0, 1, &samplerState );
 
+	//**********************追加部分
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;//横の座標範囲外は画像繰り返さない
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;//縦の座標範囲外は画像繰り返さない
+	g_D3DDevice->CreateSamplerState(&samplerDesc, &samplerState);
+	g_ImmediateContext->PSSetSamplers(1, 1, &samplerState); //サンプラー1番を作成
 
 	//定数バッファ生成
 
@@ -354,6 +359,10 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	g_ImmediateContext->VSSetConstantBuffers(6, 1, &g_ParameterBuffer);
 	g_ImmediateContext->PSSetConstantBuffers(6, 1, &g_ParameterBuffer);
 
+	hBufferDesc.ByteWidth = sizeof(float) * 8;
+	g_D3DDevice->CreateBuffer(&hBufferDesc, NULL, &g_WeightBuffer);
+	g_ImmediateContext->PSSetConstantBuffers(7, 1, &g_WeightBuffer); //7番として追加
+
 	MATERIAL material;
 	ZeroMemory(&material, sizeof(material));
 	material.Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -374,24 +383,28 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		td.CPUAccessFlags = 0;
 		td.MipLevels = 0;
 		td.MiscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
-		g_D3DDevice->CreateTexture2D(&td, NULL, &ppTexture[0]);
+		
+		for (int i = 0; i < 2; i++)
+		{
+			g_D3DDevice->CreateTexture2D(&td, NULL, &ppTexture[i]);
 
-		//レンダーターゲットビュー作成
-		D3D11_RENDER_TARGET_VIEW_DESC rtvd;
-		ZeroMemory(&rtvd, sizeof(rtvd));
-		rtvd.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;//ピクセルフォーマット
-		rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
-		g_D3DDevice->CreateRenderTargetView(ppTexture[0],
-			&rtvd, &g_PeRendertargetView[0]);
+			//レンダーターゲットビュー作成
+			D3D11_RENDER_TARGET_VIEW_DESC rtvd;
+			ZeroMemory(&rtvd, sizeof(rtvd));
+			rtvd.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; //ピクセルフォーマット
+			rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+			g_D3DDevice->CreateRenderTargetView(ppTexture[i],
+				&rtvd, &g_PeRendertargetView[i]);
 
-		//シェーダーリソースビュー
-		D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
-		ZeroMemory(&srvd, sizeof(srvd));
-		srvd.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;//ピクセルフォーマット
-		srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-		srvd.Texture2D.MipLevels = -1;//ミップマップ使う
-		g_D3DDevice->CreateShaderResourceView(ppTexture[0],
-			&srvd, &g_PeShaderResourceView[0]);
+			//シェーダーリソースビュー
+			D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
+			ZeroMemory(&srvd, sizeof(srvd));
+			srvd.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; //ピクセルフォーマット
+			srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+			srvd.Texture2D.MipLevels = -1; //ミップマップ使う
+			g_D3DDevice->CreateShaderResourceView(ppTexture[i],
+				&srvd, &g_PeShaderResourceView[i]);
+		}
 		
 	}
 
@@ -538,8 +551,14 @@ ID3D11ShaderResourceView* GetPeTexture(int no)
 void BeginPe(int no)
 {
 	g_ImmediateContext->OMSetRenderTargets(1, &g_PeRendertargetView[no], g_DepthStencilView);
-	float    ClearColor[4] = { 0.5f, 0.0f, 0.0f, 1.0f };
-	g_ImmediateContext->ClearRenderTargetView(g_PeRendertargetView[no], ClearColor);
+	//Debug Color Data
+	float    ClearColor[][4] = {
+		{ 0.5f, 0.5f, 0.0f, 1.0f } ,
+		{ 0.0f, 0.5f, 0.0f, 1.0f } ,
+		{ 0.0f, 0.5f, 0.5f, 1.0f } ,
+		{ 0.5f, 0.0f, 0.5f, 1.0f } ,
+	};
+	g_ImmediateContext->ClearRenderTargetView(g_PeRendertargetView[no], ClearColor[no]);
 	g_ImmediateContext->ClearDepthStencilView(g_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
@@ -549,5 +568,11 @@ void BeginPe(int no)
 void GenerateMipsPe(int no)
 {
 	g_ImmediateContext->GenerateMips(g_PeShaderResourceView[no]);
+}
+
+void SetWeight(float* Weight)
+{
+	g_ImmediateContext->UpdateSubresource(g_WeightBuffer, 0, NULL, &Weight[0], 0, 0);
+
 }
 

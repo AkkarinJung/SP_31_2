@@ -16,7 +16,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_TARGET)
     // テクセルの取得
     float4 col = g_Texture.Sample(g_SamplerState, In.TexCoord);
 
-    //col.rgb += clamp(Rand(In.TexCoord * 300.0f), Parameter.y, Parameter.z);
+    col.rgb += clamp(Rand(In.TexCoord * 300.0f), Parameter.y, Parameter.z);
     //col.rgb = (col.r * 0.3f) + (col.g * 0.6f) + (col.b * 0.1f);
     
     // 頂点カラー乗算

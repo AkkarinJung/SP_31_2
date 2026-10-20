@@ -24,13 +24,16 @@
 // グローバル変数
 //*****************************************************************************
 
+static float Lerp(float a, float b, float t) 
+{ return a + (b - a) * t; }
+
 //=============================================================================
 // 初期化処理
 //=============================================================================
 HRESULT posterise::Init(void)
 {
 	// テクスチャ読み込み
-	int Texture = TextureLoad(L"asset\\texture\\test.jpg");
+	//int Texture = TextureLoad(L"asset\\texture\\4.png");
 
 	//シェーダー読み込み
 	CreateVertexShader(&VertexShader, &VertexLayout, "poterizeVS.cso");
@@ -42,9 +45,21 @@ HRESULT posterise::Init(void)
 	Scale = XMFLOAT2(1.0f, 1.0f);
 	Size = XMFLOAT2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Rotate = 0.0f;
-	TexID = Texture;
 
-	Parameter = XMFLOAT4(64.0f, 0.2f, 0.7f, 1.0f);
+	// テクスチャ読み込み（2.png → 3.png → 4.png）
+	TexID[0] = TextureLoad(L"asset\\texture\\2.png");
+	TexID[1] = TextureLoad(L"asset\\texture\\3.png");
+	TexID[2] = TextureLoad(L"asset\\texture\\4.png");
+
+	TexIndex = 0;
+	Timer = 0;
+
+	//Parameter = XMFLOAT4(64.0f, 0.2f, 0.7f, 1.0f);
+
+	StartParameter = XMFLOAT4(1.0f, 0.916f, 0.588f, 1.0f);
+	EndParameter = XMFLOAT4(64.0f, 0.2f, 0.3f, 1.0f); 
+	Parameter = StartParameter;
+	AutoParameter = true;
 
 	return S_OK;
 }
@@ -65,6 +80,36 @@ void posterise::Finalize(void)
 //=============================================================================
 void posterise::Update(void)
 {
+	float dt = 1.0f / 60.0f;
+	// 2秒ごとに次の画像へ切り替え
+	Timer += dt;
+	if (Timer >= SWITCH_TIME)
+	{
+		Timer -= SWITCH_TIME;
+		TexIndex++;
+
+		if (TexIndex >= TEXTURE_NUM)
+		{
+			//TexIndex = TEXTURE_NUM - 1;  // 4.png で停止
+			TexIndex = 0;              // ループさせたい場合はこっち
+		}
+	}
+
+	if (AutoParameter)
+	{
+		float total = SWITCH_TIME * TEXTURE_NUM;
+		float elapsed = SWITCH_TIME * TexIndex + Timer;
+
+		float t = elapsed / total;
+		if (t > 1.0f) t = 1.0f;
+		if (t < 0.0f) t = 0.0f;
+
+		Parameter.x = Lerp(StartParameter.x, EndParameter.x, t);
+		Parameter.y = Lerp(StartParameter.y, EndParameter.y, t);
+		Parameter.z = Lerp(StartParameter.z, EndParameter.z, t);
+		Parameter.w = Lerp(StartParameter.w, EndParameter.w, t);
+	}
+
 	ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_FirstUseEver);
 	ImGui::Begin("Posterize");
 	{
@@ -72,6 +117,7 @@ void posterise::Update(void)
 		ImGui::SliderFloat("MIN", &Parameter.y, 0.0f, 1.0f, "%.3f");
 		ImGui::SliderFloat("MAX", &Parameter.z, 0.0f, 1.0f, "%.3f");
 		ImGui::SliderFloat("POW", &Parameter.w, 1.0f, 30.0f, "%.0f");
+		ImGui::Checkbox("Auto", &AutoParameter);
 	}
 	ImGui::End();
 }
@@ -103,7 +149,7 @@ void posterise::Draw(void)
 	{//2Dポリゴン1枚ずつで必要な処理
 
 		//テクスチャをセット（レンダリングテクスチャ＝直前に描画した3Dシーン）
-		ID3D11ShaderResourceView* tex = GetTexture(TexID);
+		ID3D11ShaderResourceView* tex = GetTexture(TexID[TexIndex]);
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）

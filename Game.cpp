@@ -28,6 +28,7 @@
 #include	"RGBShift.h"
 #include	"Horror.h"
 #include	"posterise.h"
+#include	"Gaussian.h"
 
 
 
@@ -56,7 +57,7 @@ Mosaic Mosaic_Model;
 RGBShift RGBShift_Model;
 Horror Horror_Model;
 posterise posterise_Model;
-
+Gaussian Gaussian_Model;
 static LIGHT Light;
 //ポーズフラグ
 static	bool	pause = false;
@@ -100,7 +101,8 @@ void InitGame()
 	//Mosaic_Model.Init();
 	//RGBShift_Model.Init();
 	//Horror_Model.Init
-	posterise_Model.Init();
+	//posterise_Model.Init();
+	Gaussian_Model.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -160,7 +162,8 @@ void FinalizeGame()
 	//Mosaic_Model.Finalize();
 	//RGBShift_Model.Finalize();
 	//Horror_Model.Finalize();
-	posterise_Model.Finalize();
+	//posterise_Model.Finalize();
+	Gaussian_Model.Finalize();
 
 	TextureFinalize();
 }
@@ -193,7 +196,8 @@ void UpdateGame()
 		//Mosaic_Model.Update();
 		//RGBShift_Model.Update();
 		//Horror_Model.Update();
-		posterise_Model.Update();
+		//posterise_Model.Update();
+		Gaussian_Model.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -226,7 +230,7 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
-	BeginPe();
+	BeginPe(0);
 	//3D用マトリクス設定
 	{
 		SetDepthEnable(true);		//奥行き処理有効
@@ -249,6 +253,11 @@ void DrawGame()
 		//Toon_2Model.Draw();
 		//Toon_3Model.Draw();
 	}
+	BeginPe(1); //レンダリングテクスチャ1をレンダリングターゲットにする
+	{//2D描画
+		SetWorldViewProjection2D();
+		Gaussian_Model.Draw(0); //横ブラーで描画
+	}
 	GenerateMipsPe();
 	Clear();
 	// 2D用マトリクス設定
@@ -257,7 +266,8 @@ void DrawGame()
 		//test2D.Draw();
 		//Mosaic_Model.Draw();
 		//RGBShift_Model.Draw();
-		//Horror_Model.Draw();
-		posterise_Model.Draw();
+		//Horror_Mode//raw();
+		//posterise_Model.Draw();
+		Gaussian_Model.Draw(1); //横ブラーで描画
 	}
 }

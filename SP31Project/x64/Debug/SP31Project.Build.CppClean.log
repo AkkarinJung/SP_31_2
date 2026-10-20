@@ -1,6 +1,5 @@
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\vc143.pdb
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\vc143.idb
-c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\mosaic.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\model.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\manager.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\main.obj
@@ -13,6 +12,7 @@ c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\imgui_impl_dx11.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\imgui_draw.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\imgui_demo.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\imgui.obj
+c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\horror.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\hemispherelighting.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\game.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\field3d.obj
@@ -29,10 +29,13 @@ c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\sprite.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\renderer.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\sprite2d.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\spotlighting.obj
+c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\rgbshift.obj
+c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\posterise.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\polygonmodel.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\pointpixellighting.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\pixellightingblinnphong.obj
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\pixeldirectionallighting.obj
+c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\mosaic.obj
 c:\users\akkarin\desktop\sp31_test_2\bumpps.cso
 c:\users\akkarin\desktop\sp31_test_2\bumpvs.cso
 c:\users\akkarin\desktop\sp31_test_2\cooktorranceps.cso
@@ -43,6 +46,8 @@ c:\users\akkarin\desktop\sp31_test_2\grayscaleps.cso
 c:\users\akkarin\desktop\sp31_test_2\grayscalevs.cso
 c:\users\akkarin\desktop\sp31_test_2\hemispherelightingps.cso
 c:\users\akkarin\desktop\sp31_test_2\hemispherelightingvs.cso
+c:\users\akkarin\desktop\sp31_test_2\horrorps.cso
+c:\users\akkarin\desktop\sp31_test_2\horrorvs.cso
 c:\users\akkarin\desktop\sp31_test_2\limlightingps.cso
 c:\users\akkarin\desktop\sp31_test_2\limlightingvs.cso
 c:\users\akkarin\desktop\sp31_test_2\mosaicps.cso
@@ -53,6 +58,9 @@ c:\users\akkarin\desktop\sp31_test_2\pixellightingblinnphongps.cso
 c:\users\akkarin\desktop\sp31_test_2\pixellightingblinnphongvs.cso
 c:\users\akkarin\desktop\sp31_test_2\pointpixellightingps.cso
 c:\users\akkarin\desktop\sp31_test_2\pointpixellightingvs.cso
+c:\users\akkarin\desktop\sp31_test_2\poterizevs.cso
+c:\users\akkarin\desktop\sp31_test_2\rgbshiftps.cso
+c:\users\akkarin\desktop\sp31_test_2\rgbshiftvs.cso
 c:\users\akkarin\desktop\sp31_test_2\spotlightingps.cso
 c:\users\akkarin\desktop\sp31_test_2\spotlightingvs.cso
 c:\users\akkarin\desktop\sp31_test_2\toon_1ps.cso
@@ -69,6 +77,7 @@ c:\users\akkarin\desktop\sp31_test_2\vertexdirectionallightingps.cso
 c:\users\akkarin\desktop\sp31_test_2\vertexdirectionallightingvs.cso
 c:\users\akkarin\desktop\sp31_test_2\zukeips.cso
 c:\users\akkarin\desktop\sp31_test_2\zukeivs.cso
+c:\users\akkarin\desktop\sp31_test_2\poterizeps.cso
 c:\users\akkarin\desktop\sp31_test_2\x64\debug\sp31project.exe
 c:\users\akkarin\desktop\sp31_test_2\x64\debug\sp31project.pdb
 c:\users\akkarin\desktop\sp31_test_2\sp31project\x64\debug\sp31project.ilk

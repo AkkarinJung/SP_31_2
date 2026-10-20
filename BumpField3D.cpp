@@ -56,7 +56,7 @@ static VERTEX_3D    Box[NUM_VERTEX] =
 HRESULT BumpField3D::Init(void)
 {
     //テクスチャ読み込み
-    TexID = TextureLoad(L"asset\\texture\\IMG_1989.png");
+    TexID = TextureLoad(L"asset\\texture\\4.png");
     MapID = TextureLoad(L"asset\\texture\\Normal\\IMG_2_Normal.png");
 
     //シェーダー読み込み
