@@ -65,3 +65,10 @@ cbuffer ParameterBuffer : register(b6)
     float4 Parameter;
 }
 
+
+cbuffer GaussianWeight : register(b7) //追加
+{
+    float4 Weight[2]; //定数バッファ float*8
+}
+
+

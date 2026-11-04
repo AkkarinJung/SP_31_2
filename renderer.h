@@ -95,3 +95,6 @@ void BeginPe(int no = 0);
 void GenerateMipsPe(int no = 0); //MipMapê∂ê¨
 void SetWeight(float* Weight);
 
+void BeginDoF();
+ID3D11ShaderResourceView* GetDepthStencil();
+

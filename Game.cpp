@@ -29,6 +29,9 @@
 #include	"Horror.h"
 #include	"posterise.h"
 #include	"Gaussian.h"
+#include	"Bloom.h"
+
+#include	"DoF.h"
 
 
 
@@ -58,6 +61,9 @@ RGBShift RGBShift_Model;
 Horror Horror_Model;
 posterise posterise_Model;
 Gaussian Gaussian_Model;
+Bloom Bloom_Model;
+DoF DoFSprite;
+
 static LIGHT Light;
 //ポーズフラグ
 static	bool	pause = false;
@@ -88,7 +94,7 @@ void InitGame()
 	//Model.Init();
 	//VDLModel.Init();
 	//PDLModel.Init();
-	//PLBPModel.Init();
+	PLBPModel.Init();
 	//HSLModel.Init();
 	//PPLModel.Init();
 	//LLModel.Init();
@@ -103,6 +109,8 @@ void InitGame()
 	//Horror_Model.Init
 	//posterise_Model.Init();
 	Gaussian_Model.Init();
+	//Bloom_Model.Init();
+	DoFSprite.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -148,7 +156,7 @@ void FinalizeGame()
 	//Model.Finalize();
 	//VDLModel.Finalize();
 	//PDLModel.Finalize();
-	//PLBPModel.Finalize();
+	PLBPModel.Finalize();
 	//HSLModel.Finalize();
 	//PPLModel.Finalize();
 	//LLModel.Finalize();
@@ -164,6 +172,8 @@ void FinalizeGame()
 	//Horror_Model.Finalize();
 	//posterise_Model.Finalize();
 	Gaussian_Model.Finalize();
+	//Bloom_Model.Finalize();
+	DoFSprite.Finalize();
 
 	TextureFinalize();
 }
@@ -182,7 +192,7 @@ void UpdateGame()
 		//Model.Update();
 		//VDLModel.Update();
 		//PDLModel.Update();
-		//PLBPModel.Update();
+		PLBPModel.Update();
 		//HSLModel.Update();
 		//PPLModel.Update();
 		//LLModel.Update();
@@ -198,6 +208,8 @@ void UpdateGame()
 		//Horror_Model.Update();
 		//posterise_Model.Update();
 		Gaussian_Model.Update();
+		//Bloom_Model.Update();
+		DoFSprite.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -230,7 +242,8 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
-	BeginPe(0);
+	//BeginPe(0);
+	BeginDoF();
 	//3D用マトリクス設定
 	{
 		SetDepthEnable(true);		//奥行き処理有効
@@ -242,7 +255,7 @@ void DrawGame()
 		//Model.Draw();
 		//VDLModel.Draw();
 		//PDLModel.Draw();
-		//PLBPModel.Draw();
+		PLBPModel.Draw();
 		//HSLModel.Draw();
 		//PPLModel.Draw();
 		//LLModel.Draw();
@@ -257,10 +270,9 @@ void DrawGame()
 	{//2D描画
 		SetWorldViewProjection2D();
 		Gaussian_Model.Draw(0); //横ブラーで描画
+		//Bloom_Model.Draw(0);
 	}
-	GenerateMipsPe();
-	Clear();
-	// 2D用マトリクス設定
+	BeginPe(0);
 	{
 		SetWorldViewProjection2D();
 		//test2D.Draw();
@@ -269,5 +281,13 @@ void DrawGame()
 		//Horror_Mode//raw();
 		//posterise_Model.Draw();
 		Gaussian_Model.Draw(1); //横ブラーで描画
+		///Bloom_Model.Draw(1);
+	}
+	
+	{
+		Clear();
+		SetWorldViewProjection2D();
+		DoFSprite.Draw();
+		//test2D.Draw();
 	}
 }

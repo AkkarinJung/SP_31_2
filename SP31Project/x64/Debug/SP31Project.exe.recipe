@@ -2,144 +2,159 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\x64\Debug\SP31Project.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\BumpPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\BloomPS01.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\BumpVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\BloomPS02.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\CookTorrancePS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\BloomVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\CookTorranceVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\BumpPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\DisneyPBRPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\BumpVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\DisneyPBRVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\CookTorrancePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\gaussianPS_H.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\CookTorranceVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\gaussianPS_V.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\DisneyPBRPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\gaussianVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\DisneyPBRVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\GrayscalePS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\DoFPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\GrayscaleVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\DoFVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\HemiSphereLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\gaussianPS_H.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\HemiSphereLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\gaussianPS_V.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\horrorPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\gaussianVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\horrorVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\GrayscalePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\LimLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\GrayscaleVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\LimLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\HemiSphereLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\MosaicPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\HemiSphereLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\MosaicVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\horrorPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PixelDirectionalLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\horrorVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PixelDirectionalLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\LimLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PixelLightingBlinnPhongPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\LimLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PixelLightingBlinnPhongVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\MosaicPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PointPixelLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\MosaicVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\PointPixelLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PixelDirectionalLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\poterizePS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PixelDirectionalLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\poterizeVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PixelLightingBlinnPhongPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\RGBShiftPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PixelLightingBlinnPhongVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\RGBShiftVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PointPixelLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\SpotLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\PointPixelLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\SpotLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\poterizePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_1PS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\poterizeVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_1VS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\RGBShiftPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_2PS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\RGBShiftVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_2VS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\SpotLightingPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_3PS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\SpotLightingVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\Toon_3VS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_1PS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\unlitColorPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_1VS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\unlitColorVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_2PS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\unlitTexturePS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_2VS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\unlitTextureVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_3PS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\VertexDirectionalLightingPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\Toon_3VS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\VertexDirectionalLightingVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\unlitColorPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\ZukeiPS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\unlitColorVS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\Akkarin\Desktop\SP31_test_2\ZukeiVS.cso</FullPath>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\unlitTexturePS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\unlitTextureVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\VertexDirectionalLightingPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\VertexDirectionalLightingVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\ZukeiPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\pro19\Desktop\SP31_2\ZukeiVS.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

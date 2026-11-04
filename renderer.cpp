@@ -53,12 +53,15 @@ XMMATRIX				g_ProjectionMatrix;
 ID3D11DepthStencilState* g_DepthStateEnable;
 ID3D11DepthStencilState* g_DepthStateDisable;
 
-#define RT_MAX (2)
+#define RT_MAX (3)
 
 ID3D11Texture2D* ppTexture[RT_MAX];
 ID3D11RenderTargetView* g_PeRendertargetView[RT_MAX];
 ID3D11ShaderResourceView* g_PeShaderResourceView[RT_MAX];
 ID3D11Buffer* g_WeightBuffer = NULL;
+
+ID3D11DepthStencilView* g_DoFStencilView = NULL;
+ID3D11ShaderResourceView* g_DoFShaderResourceView;;
 
 ID3D11Device* GetDevice( void )
 {
@@ -384,7 +387,7 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		td.MipLevels = 0;
 		td.MiscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
 		
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < RT_MAX; i++)
 		{
 			g_D3DDevice->CreateTexture2D(&td, NULL, &ppTexture[i]);
 
@@ -408,6 +411,40 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		
 	}
 
+	{
+		ID3D11Texture2D* pDepthTexture = NULL;   // 名前に注意（下記）
+		D3D11_TEXTURE2D_DESC td;
+		ZeroMemory(&td, sizeof(td));
+		td.Width = sd.BufferDesc.Width;
+		td.Height = sd.BufferDesc.Height;
+		td.Format = DXGI_FORMAT_R32_TYPELESS;
+		td.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+		td.ArraySize = 1;
+		td.SampleDesc = sd.SampleDesc;
+		td.Usage = D3D11_USAGE_DEFAULT;
+		td.CPUAccessFlags = 0;
+		td.MipLevels = 1;
+		td.MiscFlags = 0;
+		g_D3DDevice->CreateTexture2D(&td, NULL, &pDepthTexture);
+
+		D3D11_DEPTH_STENCIL_VIEW_DESC rtvd;
+		ZeroMemory(&rtvd, sizeof(rtvd));
+		rtvd.Format = DXGI_FORMAT_D32_FLOAT;
+		rtvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+		g_D3DDevice->CreateDepthStencilView(pDepthTexture, &rtvd,
+			&g_DoFStencilView);
+
+		D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
+		ZeroMemory(&srvd, sizeof(srvd));
+		srvd.Format = DXGI_FORMAT_R32_FLOAT;
+		srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+		srvd.Texture2D.MipLevels = 1;
+		g_D3DDevice->CreateShaderResourceView(pDepthTexture,
+			&srvd, &g_DoFShaderResourceView);
+
+		pDepthTexture->Release();   // ビューが参照を持つので解放してOK
+	}
+
 	return S_OK;
 }
 
@@ -419,7 +456,8 @@ void FinalizeRenderer(void)
 {
 	// オブジェクト解放
 	if(g_WorldViewProjection)	g_WorldViewProjection->Release();
-	if( g_MaterialBuffer )		g_MaterialBuffer->Release();
+	if (g_MaterialBuffer)		g_MaterialBuffer->Release();
+	if (g_WeightBuffer)			g_WeightBuffer->Release();
 	if( g_VertexLayout )		g_VertexLayout->Release();
 	if( g_VertexShader )		g_VertexShader->Release();
 	if( g_PixelShader )			g_PixelShader->Release();
@@ -431,7 +469,8 @@ void FinalizeRenderer(void)
 		if (g_PeRendertargetView[i]) g_PeRendertargetView[i]->Release();
 		if (g_PeShaderResourceView[i]) g_PeShaderResourceView[i]->Release();
 	}
-
+	if (g_DoFStencilView)        g_DoFStencilView->Release();
+	if (g_DoFShaderResourceView) g_DoFShaderResourceView->Release();
 	if( g_ImmediateContext )	g_ImmediateContext->ClearState();
 	if( g_RenderTargetView )	g_RenderTargetView->Release();
 	if( g_SwapChain )			g_SwapChain->Release();
@@ -576,3 +615,21 @@ void SetWeight(float* Weight)
 
 }
 
+void BeginDoF()
+{
+	ID3D11RenderTargetView* rt[2];
+	rt[0] = g_PeRendertargetView[0];//テクスチャ0
+	rt[1] = g_PeRendertargetView[2];//テクスチャ2
+	//テクスチャ2枚とZバッファテクスチャをレンダリングターゲットにする
+	g_ImmediateContext->OMSetRenderTargets(2, rt, g_DoFStencilView);
+
+	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	g_ImmediateContext->ClearRenderTargetView(rt[0], ClearColor);
+	g_ImmediateContext->ClearRenderTargetView(rt[1], ClearColor);
+	g_ImmediateContext->ClearDepthStencilView(g_DoFStencilView,
+		D3D11_CLEAR_DEPTH, 1.0f, 0.0f);
+}
+ID3D11ShaderResourceView* GetDepthStencil()
+{
+	return g_DoFShaderResourceView;
+}

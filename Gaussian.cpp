@@ -51,7 +51,7 @@ HRESULT Gaussian::Init(void)
 	Rotate = 0.0f;
 
 	Parameter = XMFLOAT4(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 0.0f);
-	CalcGaussianWeight(0.0f);
+	CalcGaussianWeight(Parameter.z);
 	return S_OK;
 }
 
@@ -102,6 +102,7 @@ void Gaussian::Draw(int n)
 	SetDepthEnable(false);
 
 	SetParameter(Parameter);
+	SetWeight(&Weight[0]);
 
 	// ƒ}ƒeƒŠƒAƒ‹İ’è
 	MATERIAL material;

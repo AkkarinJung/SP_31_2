@@ -143,6 +143,12 @@
     <ClCompile Include="Gaussian.cpp">
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClCompile>
+    <ClCompile Include="DoF.cpp">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClCompile>
+    <ClCompile Include="Bloom.cpp">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite2D.h">
@@ -263,6 +269,12 @@
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClInclude>
     <ClInclude Include="Gaussian.h">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClInclude>
+    <ClInclude Include="DoF.h">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClInclude>
+    <ClInclude Include="Bloom.h">
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClInclude>
   </ItemGroup>
@@ -406,6 +418,21 @@
       <Filter>ソース ファイル\shader</Filter>
     </FxCompile>
     <FxCompile Include="shader\gaussianVS.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\BloomVS.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\BloomPS01.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\BloomPS02.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\DoFPS.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\DoFVS.hlsl">
       <Filter>ソース ファイル\shader</Filter>
     </FxCompile>
   </ItemGroup>
