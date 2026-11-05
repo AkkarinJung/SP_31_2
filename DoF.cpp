@@ -33,8 +33,11 @@ HRESULT DoF::Init(void)
 	int Texture = TextureLoad(L"asset\\texture\\Toon2_2.png");
 
 	//シェーダー読み込み
-	CreateVertexShader(&VertexShader, &VertexLayout, "DoFVS.cso");
-	CreatePixelShader(&PixelShader, "DoFPS.cso");
+	//CreateVertexShader(&VertexShader, &VertexLayout, "DoFVS.cso");
+	//CreatePixelShader(&PixelShader, "DoFPS.cso");
+
+	CreateVertexShader(&VertexShader, &VertexLayout, "DoFMipMapVS.cso");
+	CreatePixelShader(&PixelShader, "DoFMipMapPS.cso");
 
 	//2Dオブジェクト初期化
 	Position = XMFLOAT3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f);
@@ -44,7 +47,8 @@ HRESULT DoF::Init(void)
 	Rotate = 0.0f;
 	TexID = Texture;
 
-	Parameter = XMFLOAT4(0.6f, 0.015f, 0, 0);
+	//Parameter = XMFLOAT4(0.6f, 0.15f, 0.0f, 0.0f);
+	Parameter = XMFLOAT4(0.75f, 0.1f, 3.0f, 0.0f);
 
 	return S_OK;
 }
@@ -65,11 +69,11 @@ void DoF::Finalize(void)
 //=============================================================================
 void DoF::Update(void)
 {
-	ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_FirstUseEver);
 	ImGui::Begin("DepthOfField");
 	{
 		ImGui::SliderFloat("Focus", &Parameter.x, 0.01f, 3.0f, "%.4f");
 		ImGui::SliderFloat("DoF", &Parameter.y, 0.01f, 1.0f, "%.4f");
+		ImGui::SliderFloat("MIP Level", &Parameter.z, 1.0f, 6.0f, "%.3f"); //MIPMAP 
 	}
 	ImGui::End();
 }
@@ -87,6 +91,8 @@ void DoF::Draw(void)
 	//ピクセルシェーダーをセット
 	GetDeviceContext()->PSSetShader(PixelShader, NULL, 0);
 
+
+
 	//奥行き処理をOFF
 	SetDepthEnable(false);
 
@@ -103,11 +109,12 @@ void DoF::Draw(void)
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 		tex = GetPeTexture(2);                              // 2番テクスチャをセット
 		GetDeviceContext()->PSSetShaderResources(1, 1, &tex);
+		GetDeviceContext()->GenerateMips(tex);
 		tex = GetDepthStencil();                            // 深度バッファをセット
 		GetDeviceContext()->PSSetShaderResources(2, 1, &tex);
 
-		SetParameter(Parameter);
 
+		SetParameter(Parameter);
 
 		//平行移動行列の作成（表示座標を決める）
 		XMMATRIX	TranslationMatrix = XMMatrixTranslation(
@@ -126,7 +133,7 @@ void DoF::Draw(void)
 		SetWorldMatrix(WorldMatrix);
 
 		//texのMIPMAP作成
-		GetDeviceContext()->GenerateMips(tex);
+		//GetDeviceContext()->GenerateMips(tex);
 
 		// ポリゴン描画
 		DrawSprite(Size, Color);

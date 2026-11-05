@@ -33,14 +33,16 @@ HRESULT Sprite2D::Init(void)
 	int Texture = TextureLoad(L"asset\\texture\\Toon2_2.png");
 
 	//シェーダー読み込み
-	CreateVertexShader(&VertexShader, &VertexLayout, "ZukeiVS.cso");
-	CreatePixelShader(&PixelShader, "ZukeiPS.cso");
+	//CreateVertexShader(&VertexShader, &VertexLayout, "ZukeiVS.cso");
+	//CreatePixelShader(&PixelShader, "ZukeiPS.cso");
+	CreateVertexShader(&VertexShader, &VertexLayout, "unlitTextureVS.cso");
+	CreatePixelShader(&PixelShader, "unlitTexturePS.cso");
 
 	//2Dオブジェクト初期化
-	Position = XMFLOAT3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f);
+	Position = XMFLOAT3(SCREEN_WIDTH / 3 / 2, SCREEN_HEIGHT / 3 / 2, 0.0f);
 	Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Scale = XMFLOAT2(1.0f, 1.0f);
-	Size = XMFLOAT2(SCREEN_WIDTH, SCREEN_HEIGHT);
+	Size = XMFLOAT2(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
 	Rotate = 0.0f;
 	TexID = Texture;
 
@@ -104,7 +106,7 @@ void Sprite2D::Draw(void)
 	{//2Dポリゴン1枚ずつで必要な処理
 
 		//テクスチャをセット
-		ID3D11ShaderResourceView* tex = GetPeTexture();
+		ID3D11ShaderResourceView* tex = GetDepthStencil();
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）

@@ -4,7 +4,7 @@ Texture2D g_Texture : register(t0);
 Texture2D g_TextureNormal : register(t1);
 SamplerState g_SamplerState : register(s0);
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float4 outDoF : SV_Target1)
 {
     float4 lv = In.WorldPosition - Light.Position;
     float4 ld = length(lv);
@@ -48,4 +48,5 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     specular = pow(specular, 30.0f);
     
     outDiffuse.rgb += (specular * ofs);
+    outDoF = outDiffuse;
 }
