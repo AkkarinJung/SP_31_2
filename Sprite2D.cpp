@@ -33,14 +33,23 @@ HRESULT Sprite2D::Init(void)
 	int Texture = TextureLoad(L"asset\\texture\\Toon2_2.png");
 
 	//シェーダー読み込み
-	CreateVertexShader(&VertexShader, &VertexLayout, "ZukeiVS.cso");
-	CreatePixelShader(&PixelShader, "ZukeiPS.cso");
+	//CreateVertexShader(&VertexShader, &VertexLayout, "ZukeiVS.cso");
+	//CreatePixelShader(&PixelShader, "ZukeiPS.cso");
+	CreateVertexShader(&VertexShader, &VertexLayout, "unlitTextureVS.cso");
+	CreatePixelShader(&PixelShader, "unlitTexturePS.cso");
 
 	//2Dオブジェクト初期化
+<<<<<<< HEAD
 	Position = XMFLOAT3(SCREEN_WIDTH , SCREEN_HEIGHT , 0.0f);
 	Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Scale = XMFLOAT2(1.0f, 1.0f);
 	Size = XMFLOAT2(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6);
+=======
+	Position = XMFLOAT3(SCREEN_WIDTH / 3 / 2, SCREEN_HEIGHT / 3 / 2, 0.0f);
+	Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	Scale = XMFLOAT2(1.0f, 1.0f);
+	Size = XMFLOAT2(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
+>>>>>>> 4cabf6289a03468186dab4fe4a96fb17fe2544b6
 	Rotate = 0.0f;
 	TexID = Texture;
 

@@ -48,5 +48,9 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float4 outDoF : SV
     specular = pow(specular, 30.0f);
     
     outDiffuse.rgb += (specular * ofs);
+<<<<<<< HEAD
     outDoF = outDiffuse; //ÅŒã‚É’Ç‰Á
+=======
+    outDoF = outDiffuse;
+>>>>>>> 4cabf6289a03468186dab4fe4a96fb17fe2544b6
 }

@@ -435,5 +435,11 @@
     <FxCompile Include="shader\DoFVS.hlsl">
       <Filter>ソース ファイル\shader</Filter>
     </FxCompile>
+    <FxCompile Include="shader\DoFMipMapPS.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="shader\DoFMipMapVS.hlsl">
+      <Filter>ソース ファイル\shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

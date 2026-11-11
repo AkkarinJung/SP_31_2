@@ -23,7 +23,7 @@ float heart (float2 tex , float size)
     return length(tex) - size;
 }
 
-void main(in PS_IN In, out float4 outDiffuse : SV_TARGET, out float4 outDoF : SV_Target1)
+void main(in PS_IN In, out float4 outDiffuse : SV_TARGET)
 {
     float ASPECT = (1280.0f / 720.0f);
     //{
@@ -69,7 +69,6 @@ void main(in PS_IN In, out float4 outDiffuse : SV_TARGET, out float4 outDoF : SV
         outDiffuse.a = 1.0f;
     }
     
-    outDoF = outDiffuse;
 }
 
 
