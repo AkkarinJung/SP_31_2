@@ -165,6 +165,8 @@
     <ClCompile Include="PointPixelLighting.cpp" />
     <ClCompile Include="PolygonModel.cpp" />
     <ClCompile Include="posterise.cpp" />
+    <ClCompile Include="ProjectionShadow.cpp" />
+    <ClCompile Include="ProjectionShadowField3D.cpp" />
     <ClCompile Include="RGBShift.cpp" />
     <ClCompile Include="SpotLighting.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
@@ -209,6 +211,8 @@
     <ClInclude Include="PointPixelLighting.h" />
     <ClInclude Include="PolygonModel.h" />
     <ClInclude Include="posterise.h" />
+    <ClInclude Include="ProjectionShadow.h" />
+    <ClInclude Include="ProjectionShadowField3D.h" />
     <ClInclude Include="RGBShift.h" />
     <ClInclude Include="SpotLighting.h" />
     <ClInclude Include="Sprite2D.h" />

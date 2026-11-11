@@ -39,17 +39,12 @@ HRESULT Sprite2D::Init(void)
 	CreatePixelShader(&PixelShader, "unlitTexturePS.cso");
 
 	//2Dオブジェクト初期化
-<<<<<<< HEAD
-	Position = XMFLOAT3(SCREEN_WIDTH , SCREEN_HEIGHT , 0.0f);
-	Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	Scale = XMFLOAT2(1.0f, 1.0f);
-	Size = XMFLOAT2(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6);
-=======
+
 	Position = XMFLOAT3(SCREEN_WIDTH / 3 / 2, SCREEN_HEIGHT / 3 / 2, 0.0f);
 	Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Scale = XMFLOAT2(1.0f, 1.0f);
 	Size = XMFLOAT2(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
->>>>>>> 4cabf6289a03468186dab4fe4a96fb17fe2544b6
+
 	Rotate = 0.0f;
 	TexID = Texture;
 
@@ -113,7 +108,10 @@ void Sprite2D::Draw(void)
 	{//2Dポリゴン1枚ずつで必要な処理
 
 		//テクスチャをセット
-		ID3D11ShaderResourceView* tex = GetDepthStencil();
+		//ID3D11ShaderResourceView* tex = GetDepthStencil();
+		//GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
+
+		ID3D11ShaderResourceView* tex = GetPeTexture(0);
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）

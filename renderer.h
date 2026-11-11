@@ -51,6 +51,9 @@ struct LIGHT
 
 	XMFLOAT4	Angle;
 
+	XMMATRIX	ViewMatrix;
+	XMMATRIX	ProjectionMatrix;
+
 };
 
 //*****************************************************************************

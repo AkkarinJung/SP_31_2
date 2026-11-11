@@ -1,13 +1,2 @@
-<<<<<<< HEAD
 ﻿  Game.cpp
-  Gaussian.cpp
-  Generating Code...
   SP31Project.vcxproj -> C:\Users\pro19\Desktop\SP31_2\x64\Debug\SP31Project.exe
-=======
-﻿  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFMipMapPS.cso
-C:\Users\Akkarin\Desktop\SP31_test_2\shader\DoFMipMapVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
-  
-  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFMipMapVS.cso
-  DoF.cpp
-  SP31Project.vcxproj -> C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe
->>>>>>> 4cabf6289a03468186dab4fe4a96fb17fe2544b6

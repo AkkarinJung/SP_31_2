@@ -33,7 +33,8 @@
 
 #include	"DoF.h"
 
-
+#include	"ProjectionShadow.h"
+#include	"ProjectionShadowField3D.h"
 
 //===============================================
 //グローバル変数
@@ -64,6 +65,9 @@ Gaussian Gaussian_Model;
 Bloom Bloom_Model;
 DoF DoFSprite;
 
+ProjectionShadow PSModel;
+ProjectionShadowField3D PSField;
+
 static LIGHT Light;
 //ポーズフラグ
 static	bool	pause = false;
@@ -90,11 +94,11 @@ void InitGame()
 
 	test2D.Init();
 	//Field.Init();
-	BumpField.Init();
+	//BumpField.Init();
 	//Model.Init();
 	//VDLModel.Init();
 	//PDLModel.Init();
-	PLBPModel.Init();
+	//PLBPModel.Init();
 	//HSLModel.Init();
 	//PPLModel.Init();
 	//LLModel.Init();
@@ -108,9 +112,11 @@ void InitGame()
 	//RGBShift_Model.Init();
 	//Horror_Model.Init
 	//posterise_Model.Init();
-	Gaussian_Model.Init();
+	//Gaussian_Model.Init();
 	//Bloom_Model.Init();
-	DoFSprite.Init();
+	//DoFSprite.Init();
+	PSModel.Init();
+	PSField.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -132,13 +138,13 @@ void InitGame()
 	{
 		//disney
 
-		XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
-		dir = XMVector3Normalize(dir);
+		XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 1.0f, 0.0f);
+		dir = XMVector4Normalize(dir);
 		XMStoreFloat4(&Light.Direction, dir);
 
-		Light.Position = XMFLOAT4(0.0f, 1.0f, 0.0f, 0.0f);
+		Light.Position = XMFLOAT4(2.0f, 2.0f, 0.0f, 0.0f);
 		Light.Diffuse = XMFLOAT4(0.9f, 0.9f, 0.9f, 1.0f);
-		Light.Ambient = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
+		Light.Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
 
 		Light.PointLightParam = XMFLOAT4(2000.0f, 1.5f, 0.0f, 0.0f);
 	}
@@ -152,11 +158,11 @@ void FinalizeGame()
 	FinalizeCamera();
 	test2D.Finalize();
 	//Field.Finalize(); 
-	BumpField.Finalize();
+	//BumpField.Finalize();
 	//Model.Finalize();
 	//VDLModel.Finalize();
 	//PDLModel.Finalize();
-	PLBPModel.Finalize();
+	//PLBPModel.Finalize();
 	//HSLModel.Finalize();
 	//PPLModel.Finalize();
 	//LLModel.Finalize();
@@ -171,9 +177,11 @@ void FinalizeGame()
 	//RGBShift_Model.Finalize();
 	//Horror_Model.Finalize();
 	//posterise_Model.Finalize();
-	Gaussian_Model.Finalize();
+	//Gaussian_Model.Finalize();
 	//Bloom_Model.Finalize();
-	DoFSprite.Finalize();
+	//DoFSprite.Finalize();
+	PSModel.Finalize();
+	PSField.Finalize();
 
 	TextureFinalize();
 }
@@ -182,17 +190,32 @@ void FinalizeGame()
 //ゲームシーン更新
 void UpdateGame()
 {
+	ImGui::Begin("ProjectionShadow");
+	{
+		ImGui::SliderFloat("LightPositionX", &Light.Position.x, -3.0f, 3.0f, "%.4f");
+		ImGui::SliderFloat("LightPositionY", &Light.Position.y, 1.0f, 5.0f, "%.4f");
+		ImGui::SliderFloat("LightPositionZ", &Light.Position.z, -3.0f, 3.0f, "%.4f");
+	}
+	ImGui::End();
+
+	XMVECTOR   lpos = XMVectorSet(Light.Position.x, Light.Position.y, Light.Position.z, 0.0f);
+	XMVECTOR   lat = XMVectorSet(0.001f, 0.0f, 0.001f, 0.0f);
+	XMVECTOR   lup = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	Light.ViewMatrix = XMMatrixLookAtLH(lpos, lat, lup);
+	Light.ProjectionMatrix = XMMatrixPerspectiveFovLH(
+		XMConvertToRadians(45.0f), (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f
+	);
 
 	if (GetPause() == false)//ポーズ中でなければ更新実行
 	{
 		UpdateCamera();
 		//test2D.Update();
 		//Field.Update();
-		BumpField.Update();
+		//BumpField.Update();
 		//Model.Update();
 		//VDLModel.Update();
 		//PDLModel.Update();
-		PLBPModel.Update();
+		//PLBPModel.Update();
 		//HSLModel.Update();
 		//PPLModel.Update();
 		//LLModel.Update();
@@ -207,9 +230,11 @@ void UpdateGame()
 		//RGBShift_Model.Update();
 		//Horror_Model.Update();
 		//posterise_Model.Update();
-		Gaussian_Model.Update();
+		//Gaussian_Model.Update();
 		//Bloom_Model.Update();
-		DoFSprite.Update();
+		//DoFSprite.Update();
+		PSModel.Update();
+		PSField.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -242,20 +267,24 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
-	//BeginPe(0);
-	BeginDoF();
+	BeginPe(0);
+	//BeginDoF();
 	//3D用マトリクス設定
 	{
 		SetDepthEnable(true);		//奥行き処理有効
 		DrawCamera();
-		SetLight(Light);
+		//SetLight(Light);
+		SetViewMatrix(Light.ViewMatrix);
+		SetProjectionMatrix(Light.ProjectionMatrix);
+		PSModel.Draw(1);
+
 
 		//Field.Draw();
-		BumpField.Draw();
+		//BumpField.Draw();
 		//Model.Draw();
 		//VDLModel.Draw();
 		//PDLModel.Draw();
-		PLBPModel.Draw();
+		//PLBPModel.Draw();
 		//HSLModel.Draw();
 		//PPLModel.Draw();
 		//LLModel.Draw();
@@ -266,26 +295,31 @@ void DrawGame()
 		//Toon_2Model.Draw();
 		//Toon_3Model.Draw();
 	}
-	BeginPe(1); //レンダリングテクスチャ1をレンダリングターゲットにする
-	{//2D描画
-		SetWorldViewProjection2D();
-		Gaussian_Model.Draw(0); //横ブラーで描画
-		//Bloom_Model.Draw(0);
-	}
-	BeginPe(0);
+	//BeginPe(1); //レンダリングテクスチャ1をレンダリングターゲットにする
+	//{//2D描画
+	//	SetWorldViewProjection2D();
+	//	//Gaussian_Model.Draw(0); //横ブラーで描画
+	//	//Bloom_Model.Draw(0);
+	//}
+	//BeginPe(0);
+	//{
+	//	SetWorldViewProjection2D();
+	//	//test2D.Draw();
+	//	//Mosaic_Model.Draw();
+	//	//RGBShift_Model.Draw();
+	//	//Horror_Mode//raw();
+	//	//posterise_Model.Draw();
+	//	//Gaussian_Model.Draw(1); //横ブラーで描画
+	//	///Bloom_Model.Draw(1);
+	//}
+	Clear();
 	{
-		SetWorldViewProjection2D();
-		//test2D.Draw();
-		//Mosaic_Model.Draw();
-		//RGBShift_Model.Draw();
-		//Horror_Mode//raw();
-		//posterise_Model.Draw();
-		Gaussian_Model.Draw(1); //横ブラーで描画
-		///Bloom_Model.Draw(1);
+		DrawCamera();
+		SetLight(Light);
+		PSModel.Draw(0);
+		PSField.Draw();
 	}
-	
 	{
-		Clear();
 		SetWorldViewProjection2D();
 		DoFSprite.Draw();
 		test2D.Draw();

@@ -592,7 +592,7 @@ void BeginPe(int no)
 	g_ImmediateContext->OMSetRenderTargets(1, &g_PeRendertargetView[no], g_DepthStencilView);
 	//Debug Color Data
 	float    ClearColor[][4] = {
-		{ 0.5f, 0.5f, 0.0f, 1.0f } ,
+		{ 1.0f, 1.0f, 1.0f, 1.0f } ,
 		{ 0.0f, 0.5f, 0.0f, 1.0f } ,
 		{ 0.0f, 0.5f, 0.5f, 1.0f } ,
 		{ 0.5f, 0.0f, 0.5f, 1.0f } ,
