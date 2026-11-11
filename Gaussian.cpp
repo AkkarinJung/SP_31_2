@@ -50,7 +50,7 @@ HRESULT Gaussian::Init(void)
 	Size = XMFLOAT2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	Rotate = 0.0f;
 
-	Parameter = XMFLOAT4(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 0.0f);
+	Parameter = XMFLOAT4(SCREEN_WIDTH, SCREEN_HEIGHT, 10.0f, 0.0f);
 	CalcGaussianWeight(Parameter.z);
 	return S_OK;
 }

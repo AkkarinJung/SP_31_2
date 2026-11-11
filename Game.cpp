@@ -88,7 +88,7 @@ void InitGame()
 	TextureInitialize(GetDevice());
 	InitCamera();
 
-	//test2D.Init();
+	test2D.Init();
 	//Field.Init();
 	BumpField.Init();
 	//Model.Init();
@@ -150,7 +150,7 @@ void InitGame()
 void FinalizeGame()
 {
 	FinalizeCamera();
-	//test2D.Finalize();
+	test2D.Finalize();
 	//Field.Finalize(); 
 	BumpField.Finalize();
 	//Model.Finalize();
@@ -288,6 +288,6 @@ void DrawGame()
 		Clear();
 		SetWorldViewProjection2D();
 		DoFSprite.Draw();
-		//test2D.Draw();
+		test2D.Draw();
 	}
 }

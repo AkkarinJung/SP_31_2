@@ -28,7 +28,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_TARGET )
 
     outDiffuse.rgb = color.rgb;
     outDiffuse.a = scene.a;
-    outDiffuse.rgb *= In.Diffuse;
+    outDiffuse *= In.Diffuse;
 }
 
 

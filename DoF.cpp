@@ -44,7 +44,7 @@ HRESULT DoF::Init(void)
 	Rotate = 0.0f;
 	TexID = Texture;
 
-	Parameter = XMFLOAT4(0.6f, 0.015f, 0, 0);
+	Parameter = XMFLOAT4(0.6f, 0.15f, 0.0f, 0.0f);
 
 	return S_OK;
 }
