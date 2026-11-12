@@ -30,6 +30,7 @@ struct PS_IN
     float4 Normal : NORMAL0;
     float4 Diffuse : COLOR0;
     float2 TexCoord : TEXCOORD0;
+    float4 LightPosition : POSITION1;
  
 };
 
@@ -49,6 +50,9 @@ struct LIGHT
     float4 GroundNormal;
     
     float4 Angle;
+    
+    matrix ViewMatrix; 
+    matrix ProjectionMatrix;
 };
 
 

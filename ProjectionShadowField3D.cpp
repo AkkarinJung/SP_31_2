@@ -122,7 +122,7 @@ void ProjectionShadowField3D::Draw(void)
     // テクスチャ設定
     ID3D11ShaderResourceView* tex = GetTexture(TexID);
     GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
-    tex = GetPeTexture();
+    tex = GetPeTexture(0);
     GetDeviceContext()->PSSetShaderResources(1, 1, &tex);
 
 

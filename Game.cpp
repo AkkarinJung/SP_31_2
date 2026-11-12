@@ -312,6 +312,7 @@ void DrawGame()
 	//	//Gaussian_Model.Draw(1); //â°ÉuÉâÅ[Ç≈ï`âÊ
 	//	///Bloom_Model.Draw(1);
 	//}
+	GenerateMipsPe(0);
 	Clear();
 	{
 		DrawCamera();
@@ -321,7 +322,7 @@ void DrawGame()
 	}
 	{
 		SetWorldViewProjection2D();
-		DoFSprite.Draw();
+		//DoFSprite.Draw();
 		test2D.Draw();
 	}
 }

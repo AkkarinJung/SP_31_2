@@ -179,7 +179,7 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	hr = D3D11CreateDeviceAndSwapChain( NULL,
 										D3D_DRIVER_TYPE_HARDWARE,
 										NULL,
-										0,
+										D3D11_CREATE_DEVICE_DEBUG,
 										NULL,
 										0,
 										D3D11_SDK_VERSION,
@@ -311,8 +311,16 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	g_ImmediateContext->PSSetSamplers( 0, 1, &samplerState );
 
 	//**********************追加部分
-	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;//横の座標範囲外は画像繰り返さない
-	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;//縦の座標範囲外は画像繰り返さない
+	//samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;//横の座標範囲外は画像繰り返さない
+	//samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;//縦の座標範囲外は画像繰り返さない
+
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_BORDER; //横の座標範囲外は指定色で塗りつぶす
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_BORDER; //縦の座標範囲外は指定色で塗りつぶす
+	samplerDesc.BorderColor[0] = 0.0f; //塗りつぶす色のR
+	samplerDesc.BorderColor[1] = 1.0f; //塗りつぶす色のG  （確認用に緑）
+	samplerDesc.BorderColor[2] = 0.0f; //塗りつぶす色のB
+	samplerDesc.BorderColor[3] = 1.0f; //塗りつぶす色のA
+	// ※確認が終わったら普段は白（1,1,1,1）にしておけばOK。
 	g_D3DDevice->CreateSamplerState(&samplerDesc, &samplerState);
 	g_ImmediateContext->PSSetSamplers(1, 1, &samplerState); //サンプラー1番を作成
 
