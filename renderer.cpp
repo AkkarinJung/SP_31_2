@@ -63,6 +63,9 @@ ID3D11Buffer* g_WeightBuffer = NULL;
 ID3D11DepthStencilView* g_DoFStencilView = NULL;
 ID3D11ShaderResourceView* g_DoFShaderResourceView;;
 
+ID3D11DepthStencilView* g_DepthShadowStencilView = NULL;
+ID3D11ShaderResourceView* g_DepthShadowShaderResourceView = NULL;
+
 ID3D11Device* GetDevice( void )
 {
 	return g_D3DDevice;
@@ -453,6 +456,40 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		pDepthTexture->Release();   // ビューが参照を持つので解放してOK
 	}
 
+	{
+		ID3D11Texture2D* pDepthShadowTexture = NULL;   // 名前に注意（下記）
+		D3D11_TEXTURE2D_DESC td;
+		ZeroMemory(&td, sizeof(td));
+		td.Width = sd.BufferDesc.Width;
+		td.Height = sd.BufferDesc.Height;
+		td.Format = DXGI_FORMAT_R32_TYPELESS;
+		td.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+		td.ArraySize = 1;
+		td.SampleDesc = sd.SampleDesc;
+		td.Usage = D3D11_USAGE_DEFAULT;
+		td.CPUAccessFlags = 0;
+		td.MipLevels = 0;
+		td.MiscFlags = 0;
+		g_D3DDevice->CreateTexture2D(&td, NULL, &pDepthShadowTexture);
+
+		D3D11_DEPTH_STENCIL_VIEW_DESC rtvd;
+		ZeroMemory(&rtvd, sizeof(rtvd));
+		rtvd.Format = DXGI_FORMAT_D32_FLOAT;
+		rtvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+		g_D3DDevice->CreateDepthStencilView(pDepthShadowTexture, &rtvd,
+			&g_DepthShadowStencilView);
+
+		D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
+		ZeroMemory(&srvd, sizeof(srvd));
+		srvd.Format = DXGI_FORMAT_R32_FLOAT;
+		srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+		srvd.Texture2D.MipLevels = 1;
+		g_D3DDevice->CreateShaderResourceView(pDepthShadowTexture,
+			&srvd, &g_DepthShadowShaderResourceView);
+
+		pDepthShadowTexture->Release();   // ビューが参照を持つので解放してOK
+	}
+
 	return S_OK;
 }
 
@@ -479,6 +516,8 @@ void FinalizeRenderer(void)
 	}
 	if (g_DoFStencilView)        g_DoFStencilView->Release();
 	if (g_DoFShaderResourceView) g_DoFShaderResourceView->Release();
+	if (g_DepthShadowStencilView)        g_DepthShadowStencilView->Release();
+	if (g_DepthShadowShaderResourceView) g_DepthShadowShaderResourceView->Release();
 	if( g_ImmediateContext )	g_ImmediateContext->ClearState();
 	if( g_RenderTargetView )	g_RenderTargetView->Release();
 	if( g_SwapChain )			g_SwapChain->Release();
@@ -640,4 +679,16 @@ void BeginDoF()
 ID3D11ShaderResourceView* GetDepthStencil()
 {
 	return g_DoFShaderResourceView;
+}
+
+ID3D11ShaderResourceView* GetDepthShadowShaderResourceView()
+{
+	return g_DepthShadowShaderResourceView;
+}
+
+
+void BeginDepth()
+{
+	g_ImmediateContext->OMSetRenderTargets(2, NULL, g_DepthShadowStencilView);
+	g_ImmediateContext->ClearDepthStencilView(g_DepthShadowStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

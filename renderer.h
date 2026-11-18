@@ -101,3 +101,6 @@ void SetWeight(float* Weight);
 void BeginDoF();
 ID3D11ShaderResourceView* GetDepthStencil();
 
+ID3D11ShaderResourceView* GetDepthShadowShaderResourceView();
+void BeginDepth();
+

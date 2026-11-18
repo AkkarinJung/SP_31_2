@@ -111,7 +111,10 @@ void Sprite2D::Draw(void)
 		//ID3D11ShaderResourceView* tex = GetDepthStencil();
 		//GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
-		ID3D11ShaderResourceView* tex = GetPeTexture(0);
+		//ID3D11ShaderResourceView* tex = GetPeTexture(0);
+		//GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
+
+		ID3D11ShaderResourceView* tex = GetDepthShadowShaderResourceView();
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）
@@ -131,7 +134,7 @@ void Sprite2D::Draw(void)
 		SetWorldMatrix(WorldMatrix);
 
 		//texのMIPMAP作成
-		GetDeviceContext()->GenerateMips(tex);
+		//GetDeviceContext()->GenerateMips(tex);
 
 		// ポリゴン描画
 		DrawSprite(Size, Color);
