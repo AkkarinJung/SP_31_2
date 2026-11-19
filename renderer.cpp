@@ -689,6 +689,6 @@ ID3D11ShaderResourceView* GetDepthShadowShaderResourceView()
 
 void BeginDepth()
 {
-	g_ImmediateContext->OMSetRenderTargets(2, NULL, g_DepthShadowStencilView);
+	g_ImmediateContext->OMSetRenderTargets(0, NULL, g_DepthShadowStencilView);
 	g_ImmediateContext->ClearDepthStencilView(g_DepthShadowStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

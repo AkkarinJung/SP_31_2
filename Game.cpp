@@ -35,6 +35,8 @@
 
 #include	"ProjectionShadow.h"
 #include	"ProjectionShadowField3D.h"
+#include	"DepthShadow.h"
+#include	"DepthShadowField3D.h" 
 
 //===============================================
 //グローバル変数
@@ -67,8 +69,13 @@ DoF DoFSprite;
 
 ProjectionShadow PSModel;
 ProjectionShadowField3D PSField;
+DepthShadow         DSModel;
+DepthShadowField3D  DSField;
 
 static LIGHT Light;
+float g_LightNear = 1.0f;
+float g_LightFar = 10.0f;
+
 //ポーズフラグ
 static	bool	pause = false;
 
@@ -115,8 +122,10 @@ void InitGame()
 	//Gaussian_Model.Init();
 	//Bloom_Model.Init();
 	//DoFSprite.Init();
-	PSModel.Init();
-	PSField.Init();
+	//PSModel.Init();
+	//PSField.Init();
+	DSModel.Init();
+	DSField.Init();
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -138,15 +147,15 @@ void InitGame()
 	{
 		//disney
 
-		XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 1.0f, 0.0f);
+		XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 		dir = XMVector4Normalize(dir);
 		XMStoreFloat4(&Light.Direction, dir);
 
-		Light.Position = XMFLOAT4(2.0f, 2.0f, 0.0f, 0.0f);
+		Light.Position = XMFLOAT4(2.0f, 2.0f, -3.0f, 0.0f);
 		Light.Diffuse = XMFLOAT4(0.9f, 0.9f, 0.9f, 1.0f);
-		Light.Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+		Light.Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
 
-		Light.PointLightParam = XMFLOAT4(2000.0f, 1.5f, 0.0f, 0.0f);
+		Light.PointLightParam = XMFLOAT4(1000.0f, 5.0f, 0.0f, 0.5f);
 	}
 
 }
@@ -180,8 +189,10 @@ void FinalizeGame()
 	//Gaussian_Model.Finalize();
 	//Bloom_Model.Finalize();
 	//DoFSprite.Finalize();
-	PSModel.Finalize();
-	PSField.Finalize();
+	//PSModel.Finalize();
+	//PSField.Finalize();
+	DSField.Finalize();
+	DSModel.Finalize();
 
 	TextureFinalize();
 }
@@ -190,21 +201,32 @@ void FinalizeGame()
 //ゲームシーン更新
 void UpdateGame()
 {
-	ImGui::Begin("ProjectionShadow");
+	//ImGui::Begin("ProjectionShadow");
+	//{
+	//	ImGui::SliderFloat("LightPositionX", &Light.Position.x, -3.0f, 3.0f, "%.4f");
+	//	ImGui::SliderFloat("LightPositionY", &Light.Position.y, 1.0f, 5.0f, "%.4f");
+	//	ImGui::SliderFloat("LightPositionZ", &Light.Position.z, -3.0f, 3.0f, "%.4f");
+	//}
+	//ImGui::End();
+
+	//XMVECTOR   lpos = XMVectorSet(Light.Position.x, Light.Position.y, Light.Position.z, 0.0f);
+	//XMVECTOR   lat = XMVectorSet(0.001f, 0.0f, 0.001f, 0.0f);
+	//XMVECTOR   lup = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	//Light.ViewMatrix = XMMatrixLookAtLH(lpos, lat, lup);
+	//Light.ProjectionMatrix = XMMatrixPerspectiveFovLH(
+	//	XMConvertToRadians(45.0f), (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f
+	//);
+
+	ImGui::Begin("DepthShadow");                                                // ★
 	{
-		ImGui::SliderFloat("LightPositionX", &Light.Position.x, -3.0f, 3.0f, "%.4f");
-		ImGui::SliderFloat("LightPositionY", &Light.Position.y, 1.0f, 5.0f, "%.4f");
-		ImGui::SliderFloat("LightPositionZ", &Light.Position.z, -3.0f, 3.0f, "%.4f");
+		ImGui::SliderFloat("LightPositionX", &Light.Position.x, -10.0f, 10.0f); // ★
+		ImGui::SliderFloat("LightPositionY", &Light.Position.y, 0.5f, 20.0f); // ★
+		ImGui::SliderFloat("LightPositionZ", &Light.Position.z, -10.0f, 10.0f); // ★
+		ImGui::SliderFloat("Near", &g_LightNear, 0.1f, 10.0f);                  // ★
+		ImGui::SliderFloat("Far", &g_LightFar, 1.0f, 50.0f);                  // ★
+		if (g_LightFar < g_LightNear + 0.1f) g_LightFar = g_LightNear + 0.1f;   // ★ FAR must be beyond NEAR
 	}
 	ImGui::End();
-
-	XMVECTOR   lpos = XMVectorSet(Light.Position.x, Light.Position.y, Light.Position.z, 0.0f);
-	XMVECTOR   lat = XMVectorSet(0.001f, 0.0f, 0.001f, 0.0f);
-	XMVECTOR   lup = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-	Light.ViewMatrix = XMMatrixLookAtLH(lpos, lat, lup);
-	Light.ProjectionMatrix = XMMatrixPerspectiveFovLH(
-		XMConvertToRadians(45.0f), (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f
-	);
 
 	if (GetPause() == false)//ポーズ中でなければ更新実行
 	{
@@ -233,8 +255,10 @@ void UpdateGame()
 		//Gaussian_Model.Update();
 		//Bloom_Model.Update();
 		//DoFSprite.Update();
-		PSModel.Update();
-		PSField.Update();
+		//PSModel.Update();
+		//PSField.Update();
+		DSModel.Update();
+		DSField.Update();
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -267,16 +291,50 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
-	BeginPe(0);
+	//ライトカメラ行列作成
+	XMVECTOR lpos = XMVectorSet(Light.Position.x, Light.Position.y, Light.Position.z, 0.0f);
+	XMVECTOR lat = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
+	XMVECTOR lup = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	Light.ViewMatrix = XMMatrixLookAtLH(lpos, lat, lup);
+	SetViewMatrix(Light.ViewMatrix);                         //セット時に転置される
+	Light.ViewMatrix = XMMatrixTranspose(Light.ViewMatrix);  //転置しておく
+
+	//ライトカメラのプロジェクション行列
+	Light.ProjectionMatrix = XMMatrixPerspectiveFovLH(
+		XMConvertToRadians(45.0f), (float)SCREEN_WIDTH / SCREEN_HEIGHT,
+		g_LightNear, g_LightFar);                                       // ★ was 1.0f, 10.0f
+	SetProjectionMatrix(Light.ProjectionMatrix);                        //セット時に転置される
+	Light.ProjectionMatrix = XMMatrixTranspose(Light.ProjectionMatrix); //転置しておく
+
+	SetLight(Light);
+
+	BeginDepth();   //デプスバッファをレンダリングターゲットにする
+	{
+		SetDepthEnable(true);
+		DSModel.Draw(); //ドーナツ深度表示
+		DSField.Draw(); //地面深度表示
+	}
+	Clear();        //レンダリングターゲットをデフォルトに戻す
+	{
+		DrawCamera();
+		DSModel.Draw(); //普通にドーナツ表示
+		DSField.Draw(); //普通に地面表示
+	}
+	{
+		SetWorldViewProjection2D();
+		test2D.Draw();
+	}
+
+	//BeginPe(0);
 	//BeginDoF();
 	//3D用マトリクス設定
 	{
-		SetDepthEnable(true);		//奥行き処理有効
-		DrawCamera();
-		//SetLight(Light);
-		SetViewMatrix(Light.ViewMatrix);
-		SetProjectionMatrix(Light.ProjectionMatrix);
-		PSModel.Draw(1);
+		//SetDepthEnable(true);		//奥行き処理有効
+		//DrawCamera();
+		////SetLight(Light);
+		//SetViewMatrix(Light.ViewMatrix);
+		//SetProjectionMatrix(Light.ProjectionMatrix);
+		//PSModel.Draw(1);
 
 
 		//Field.Draw();
@@ -312,17 +370,17 @@ void DrawGame()
 	//	//Gaussian_Model.Draw(1); //横ブラーで描画
 	//	///Bloom_Model.Draw(1);
 	//}
-	GenerateMipsPe(0);
-	Clear();
+	//GenerateMipsPe(0);
+	//Clear();
 	{
-		DrawCamera();
-		SetLight(Light);
-		PSModel.Draw(0);
-		PSField.Draw();
+		//DrawCamera();
+		//SetLight(Light);
+		//PSModel.Draw(0);
+		//PSField.Draw();
 	}
 	{
-		SetWorldViewProjection2D();
+		//SetWorldViewProjection2D();
 		//DoFSprite.Draw();
-		test2D.Draw();
+		//test2D.Draw();
 	}
 }
