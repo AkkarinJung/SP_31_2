@@ -140,6 +140,8 @@
     <ClCompile Include="BumpField3D.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CookTorrance.cpp" />
+    <ClCompile Include="DepthShadow.cpp" />
+    <ClCompile Include="DepthShadowField3D.cpp" />
     <ClCompile Include="DisneyPBR.cpp" />
     <ClCompile Include="DoF.cpp" />
     <ClCompile Include="Field3D.cpp" />
@@ -184,6 +186,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CookTorrance.h" />
     <ClInclude Include="debugPrintf.h" />
+    <ClInclude Include="DepthShadow.h" />
+    <ClInclude Include="DepthShadowField3D.h" />
     <ClInclude Include="DirectXTex.h" />
     <ClInclude Include="DisneyPBR.h" />
     <ClInclude Include="DoF.h" />
