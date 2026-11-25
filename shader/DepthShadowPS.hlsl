@@ -1,5 +1,10 @@
 #include "common.hlsl"
 
+#define SCREEN_WIDTH (1280.0f)
+#define SCREEN_HEIGHT (720.0f)
+#define NUM_SAMPLE (5.0f)
+
+
 
 Texture2D g_Texture : register(t0); //通常のテクスチャ
 SamplerState g_SamplerState : register(s0);
@@ -51,9 +56,35 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     uv.xy *= float2(0.5f, -0.5f); //テクスチャ座標(0.0～1.0)へ変換
     uv.xy += 0.5f;
 
-    float depth = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy).r; // ★
-    if (depth < uv.z - 0.003f) //Zファイティング対応                          // ★
-    {
-        outDiffuse.rgb *= 0.5f; //暗くする
+    //{//normal
+    //    float depth = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy).r; // ★
+    //    if (depth < uv.z - 0.003f) //Zファイティング対応                          // ★
+    //    {
+    //        outDiffuse.rgb *= 0.5f; //暗くする
+    //    }
+    //}
+    
+    {//PCF
+        float2 offset = float2(1.0f / SCREEN_WIDTH, 1.0f / SCREEN_HEIGHT);
+        float shadowRate = 0.0f;
+        float zb[NUM_SAMPLE];
+        zb[0] = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy);
+        zb[1] = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy + float2(0, -offset.y));
+        
+        zb[2] = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy + float2(0, offset.y));
+        zb[3] = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy + float2(-offset.x, 0));
+        zb[4] = g_TextureShadowDepth.Sample(g_SamplerState1, uv.xy + float2(offset.x, 0));
+
+        for (int i = 0; i < NUM_SAMPLE;i++)
+        {
+            if ((zb[i] < uv.z - 0.01f))
+            {
+                shadowRate++;
+            }
+        }
+        shadowRate /= NUM_SAMPLE;
+        float3 shadowColor = outDiffuse.rgb * 0.5f;
+        outDiffuse.rgb = lerp(outDiffuse.rgb, shadowColor, shadowRate);
     }
 }
+ 

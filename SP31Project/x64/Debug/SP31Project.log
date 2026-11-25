@@ -1,5 +1,8 @@
-﻿  renderer.cpp
-C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(560,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(595,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(677,28): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
-  SP31Project.vcxproj -> C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe
+﻿C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(71,9-67): warning X3206: implicit truncation of vector type
+C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(72,9-90): warning X3206: implicit truncation of vector type
+C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(74,9-89): warning X3206: implicit truncation of vector type
+C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(75,9-90): warning X3206: implicit truncation of vector type
+C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(76,9-89): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\pro19\Desktop\SP31_2\DepthShadowPS.cso
+  SP31Project.vcxproj -> C:\Users\pro19\Desktop\SP31_2\x64\Debug\SP31Project.exe
