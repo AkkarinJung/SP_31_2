@@ -319,9 +319,9 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_BORDER; //横の座標範囲外は指定色で塗りつぶす
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_BORDER; //縦の座標範囲外は指定色で塗りつぶす
-	samplerDesc.BorderColor[0] = 0.0f; //塗りつぶす色のR
-	samplerDesc.BorderColor[1] = 1.0f; //塗りつぶす色のG  （確認用に緑）
-	samplerDesc.BorderColor[2] = 0.0f; //塗りつぶす色のB
+	samplerDesc.BorderColor[0] = 1.0f; //塗りつぶす色のR
+	samplerDesc.BorderColor[1] = 1.0f; //塗りつぶす色のG  （確認用は緑 0,1,0 → 本番は白）
+	samplerDesc.BorderColor[2] = 1.0f; //塗りつぶす色のB
 	samplerDesc.BorderColor[3] = 1.0f; //塗りつぶす色のA
 	// ※確認が終わったら普段は白（1,1,1,1）にしておけばOK。
 	g_D3DDevice->CreateSamplerState(&samplerDesc, &samplerState);
@@ -529,13 +529,22 @@ void FinalizeRenderer(void)
 //=============================================================================
 // バックバッファクリア
 //=============================================================================
+static float g_ClearColor[4] = { 0.5f, 0.0f, 0.0f, 1.0f };//純黒は避ける
+
+void SetClearColor(float r, float g, float b)
+{
+	g_ClearColor[0] = r;
+	g_ClearColor[1] = g;
+	g_ClearColor[2] = b;
+	g_ClearColor[3] = 1.0f;
+}
+
 void Clear(void)
 {
 	g_ImmediateContext->OMSetRenderTargets(1, &g_RenderTargetView, g_DepthStencilView);
 	// バックバッファクリア色
-	float ClearColor[4] = { 0.5f, 0.0f, 0.0f, 1.0f };//純黒は避ける
-	//バックバッファをクリア
-	g_ImmediateContext->ClearRenderTargetView( g_RenderTargetView, ClearColor );
+	//バックバッファをクリア（色は SetClearColor で変更できる）
+	g_ImmediateContext->ClearRenderTargetView( g_RenderTargetView, g_ClearColor );
 	//デプスステンシルバッファをクリア
 	g_ImmediateContext->ClearDepthStencilView( g_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

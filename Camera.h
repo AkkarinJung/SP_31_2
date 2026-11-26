@@ -23,4 +23,5 @@ void	InitCamera();
 void	FinalizeCamera();
 void	UpdateCamera();
 void	DrawCamera();
+Camera*	GetCamera();
 

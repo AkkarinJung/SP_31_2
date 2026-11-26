@@ -161,6 +161,9 @@
     <ClCompile Include="DepthShadow.cpp">
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowDiorama.cpp">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite2D.h">
@@ -299,6 +302,9 @@
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClInclude>
     <ClInclude Include="DepthShadow.h">
+      <Filter>ソース ファイル\オブジェクトクラス</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowDiorama.h">
       <Filter>ソース ファイル\オブジェクトクラス</Filter>
     </ClInclude>
   </ItemGroup>

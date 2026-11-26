@@ -6,7 +6,7 @@
 // マクロ定義
 //************************************************************
 #define NUM_VERTEX (4)
-#define SIZE (5)
+#define SIZE (5.0f)   // (5) だと SIZE / 2 が整数の 2 になっていた
 
 //************************************************************
 // グローバル変数
@@ -81,7 +81,7 @@ HRESULT DepthShadowField3D::Init(void)
     GetDeviceContext()->Unmap(VertexBuffer, 0);
 
     //3Dオブジェクト管理変数の初期化
-    Position = XMFLOAT3(0.0f, -0.1f, 0.0f);
+    Position = XMFLOAT3(0.0f, 0.0f, 0.0f);
     Rotate = XMFLOAT3(0.0f, 0.0f, 0.0f);
     Scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 

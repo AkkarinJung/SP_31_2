@@ -1,8 +1,14 @@
-﻿C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(71,9-67): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(72,9-90): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(74,9-89): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(75,9-90): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(76,9-89): warning X3206: implicit truncation of vector type
-  
-  compilation object save succeeded; see C:\Users\pro19\Desktop\SP31_2\DepthShadowPS.cso
-  SP31Project.vcxproj -> C:\Users\pro19\Desktop\SP31_2\x64\Debug\SP31Project.exe
+﻿  Game.cpp
+  ShadowDiorama.cpp
+  Generating Code...
+DirectXTex_Debug.lib(DirectXTexImage.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexImage.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexWIC.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexWIC.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexD3D11.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexD3D11.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexUtil.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexUtil.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexConvert.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexConvert.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexCompress.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexCompress.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexMipMaps.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexMipMaps.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC4BC5.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC4BC5.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC6HBC7.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC6HBC7.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+  SP31Project.vcxproj -> C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe

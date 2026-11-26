@@ -29,6 +29,9 @@ HRESULT DepthShadow::Init(void)
     //Model = ModelLoad("asset\\model\\model.fbx");
     Model = ModelLoad("asset\\model\\cube.fbx");
 
+    //yC³zTexID ‚ª–¢‰Šú‰»‚Ì‚Ü‚Ü GetTexture(TexID) ‚µ‚Ä‚¢‚½
+    TexID = TextureLoad(L"asset\\texture\\sura.jpg");
+
     return S_OK;
 }
 

@@ -142,6 +142,7 @@
     <ClCompile Include="CookTorrance.cpp" />
     <ClCompile Include="DepthShadow.cpp" />
     <ClCompile Include="DepthShadowField3D.cpp" />
+    <ClCompile Include="ShadowDiorama.cpp" />
     <ClCompile Include="DisneyPBR.cpp" />
     <ClCompile Include="DoF.cpp" />
     <ClCompile Include="Field3D.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="debugPrintf.h" />
     <ClInclude Include="DepthShadow.h" />
     <ClInclude Include="DepthShadowField3D.h" />
+    <ClInclude Include="ShadowDiorama.h" />
     <ClInclude Include="DirectXTex.h" />
     <ClInclude Include="DisneyPBR.h" />
     <ClInclude Include="DoF.h" />

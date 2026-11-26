@@ -19,6 +19,11 @@ void	InitCamera()
 	g_Camera.Rotation = 0.0f;
 }
 
+Camera*	GetCamera()
+{
+	return &g_Camera;
+}
+
 void	FinalizeCamera()
 {
 

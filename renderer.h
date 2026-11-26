@@ -63,6 +63,7 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow);
 void FinalizeRenderer(void);
 
 void Clear(void);
+void SetClearColor(float r, float g, float b);
 void Present(void);
 
 ID3D11Device *GetDevice( void );
