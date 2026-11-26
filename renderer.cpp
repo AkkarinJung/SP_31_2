@@ -634,17 +634,21 @@ ID3D11ShaderResourceView* GetPeTexture(int no)
 }
 
 //指定のテクスチャをレンダリングターゲットへ設定してクリアー
-void BeginPe(int no)
+void BeginPe(int no, int num)//[no]からnum枚分のテクスチャをセット
 {
-	g_ImmediateContext->OMSetRenderTargets(1, &g_PeRendertargetView[no], g_DepthStencilView);
+	g_ImmediateContext->OMSetRenderTargets(num, &g_PeRendertargetView[no], g_DepthStencilView);
 	//Debug Color Data
-	float    ClearColor[][4] = {
-		{ 1.0f, 1.0f, 1.0f, 1.0f } ,
-		{ 0.0f, 0.5f, 0.0f, 1.0f } ,
-		{ 0.0f, 0.5f, 0.5f, 1.0f } ,
-		{ 0.5f, 0.0f, 0.5f, 1.0f } ,
+	float    ClearColor[][4] =
+	{//色は適当に全て異なる色（黒以外）
+		{ 0.2f, 0.2f, 0.2f, 1.0f },//テクスチャ0のクリア色
+		{ 0.2f, 0.2f, 0.0f, 1.0f },//テクスチャ1のクリア色
+		{ 0.0f, 0.2f, 0.7f, 1.0f },//テクスチャ2のクリア色
+		{ 0.0f, 0.2f, 0.0f, 1.0f },//テクスチャ3のクリア色
 	};
-	g_ImmediateContext->ClearRenderTargetView(g_PeRendertargetView[no], ClearColor[no]);
+	for (int i = no; i < num + no; i++)//テクスチャを指定色でクリア
+	{
+		g_ImmediateContext->ClearRenderTargetView(g_PeRendertargetView[i], ClearColor[i]);
+	}
 	g_ImmediateContext->ClearDepthStencilView(g_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 

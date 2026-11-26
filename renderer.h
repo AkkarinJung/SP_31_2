@@ -94,7 +94,7 @@ void SetLight(LIGHT Light);
 void SetCullMode(D3D11_CULL_MODE cull);
 
 ID3D11ShaderResourceView* GetPeTexture(int no = 0);
-void BeginPe(int no = 0);
+void BeginPe(int no = 0, int num = 1);
 void GenerateMipsPe(int no = 0); //MipMapê∂ê¨
 void SetWeight(float* Weight);
 

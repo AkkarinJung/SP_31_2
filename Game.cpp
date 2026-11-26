@@ -37,6 +37,12 @@
 #include	"ProjectionShadowField3D.h"
 #include	"DepthShadow.h"
 #include	"DepthShadowField3D.h" 
+#include	"GBufferField3D.h"
+#include	"GBufferPolygon.h"
+#include	"DeferredSprite2D.h"
+
+//1 : Gバッファ（デファードレンダリング）表示 / 0 : 従来のデプスシャドウ表示
+#define	USE_GBUFFER	(1)
 
 //===============================================
 //グローバル変数
@@ -71,6 +77,9 @@ ProjectionShadow PSModel;
 ProjectionShadowField3D PSField;
 DepthShadow         DSModel;
 DepthShadowField3D  DSField;
+GBufferField3D      GBufferField;
+GBufferPolygon      GBufferModel;
+DeferredSprite2D    DeferredSprite;
 
 static LIGHT Light;
 float g_LightNear = 1.0f;
@@ -124,8 +133,14 @@ void InitGame()
 	//DoFSprite.Init();
 	//PSModel.Init();
 	//PSField.Init();
+#if USE_GBUFFER
+	GBufferField.Init();
+	GBufferModel.Init();
+	DeferredSprite.Init();
+#else
 	DSModel.Init();
 	DSField.Init();
+#endif
 
 	//XMVECTOR dir = XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 	//dir = XMVector3Normalize(dir);
@@ -191,8 +206,14 @@ void FinalizeGame()
 	//DoFSprite.Finalize();
 	//PSModel.Finalize();
 	//PSField.Finalize();
+#if USE_GBUFFER
+	DeferredSprite.Finalize();
+	GBufferModel.Finalize();
+	GBufferField.Finalize();
+#else
 	DSField.Finalize();
 	DSModel.Finalize();
+#endif
 
 	TextureFinalize();
 }
@@ -217,6 +238,7 @@ void UpdateGame()
 	//	XMConvertToRadians(45.0f), (float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f
 	//);
 
+#if !USE_GBUFFER
 	ImGui::Begin("DepthShadow");                                                // ★
 	{
 		ImGui::SliderFloat("LightPositionX", &Light.Position.x, -10.0f, 10.0f); // ★
@@ -227,6 +249,7 @@ void UpdateGame()
 		if (g_LightFar < g_LightNear + 0.1f) g_LightFar = g_LightNear + 0.1f;   // ★ FAR must be beyond NEAR
 	}
 	ImGui::End();
+#endif
 
 	if (GetPause() == false)//ポーズ中でなければ更新実行
 	{
@@ -257,8 +280,13 @@ void UpdateGame()
 		//DoFSprite.Update();
 		//PSModel.Update();
 		//PSField.Update();
+#if USE_GBUFFER
+		GBufferField.Update();
+		GBufferModel.Update();
+#else
 		DSModel.Update();
 		DSField.Update();
+#endif
 	}
 
 	//ImGui::Begin("SPOT LIGHT");
@@ -291,6 +319,22 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
+#if USE_GBUFFER
+	BeginPe(0, 2);//レンダリングテクスチャ0と1の2つをレンダリングターゲットにする
+	{//3D描画
+		SetDepthEnable(true);
+		DrawCamera();
+		GBufferField.Draw();	//フィールド
+		GBufferModel.Draw();	//モデル
+	}
+	Clear();//レンダリングターゲットをデフォルトに戻す
+	{//2D描画
+		SetWorldViewProjection2D();
+		DeferredSprite.Draw();//DEBUGスプライト2枚表示
+	}
+	return;
+#endif
+
 	//ライトカメラ行列作成
 	XMVECTOR lpos = XMVectorSet(Light.Position.x, Light.Position.y, Light.Position.z, 0.0f);
 	XMVECTOR lat = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);

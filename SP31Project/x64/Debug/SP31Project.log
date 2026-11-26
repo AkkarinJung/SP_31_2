@@ -1,8 +1,206 @@
-﻿C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(71,9-67): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(72,9-90): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(74,9-89): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(75,9-90): warning X3206: implicit truncation of vector type
-C:\Users\pro19\Desktop\SP31_2\shader\DepthShadowPS.hlsl(76,9-89): warning X3206: implicit truncation of vector type
+﻿  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\BloomPS01.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\BloomPS02.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\BloomVS.hlsl(3,34-36): warning X3578: Output value 'Out' is not completely initialized
   
-  compilation object save succeeded; see C:\Users\pro19\Desktop\SP31_2\DepthShadowPS.cso
-  SP31Project.vcxproj -> C:\Users\pro19\Desktop\SP31_2\x64\Debug\SP31Project.exe
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\BloomVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\BumpPS.hlsl(13,11-61): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\BumpPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\BumpVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\BumpVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\CookTorrancePS.hlsl(15,11-60): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\CookTorranceSub.hlsl(4,20): warning X4000: use of potentially uninitialized variable (CalculateBeckmann)
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\CookTorrancePS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\CookTorranceVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\CookTorranceVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DepthShadowPS.hlsl(71,9-67): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DepthShadowPS.hlsl(72,9-90): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DepthShadowPS.hlsl(74,9-89): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DepthShadowPS.hlsl(75,9-90): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DepthShadowPS.hlsl(76,9-89): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DepthShadowPS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DepthShadowVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DeferredGeometryPS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DeferredGeometryVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DisneyPBRPS.hlsl(22,12-34): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DisneyPBRPS.hlsl(54,16): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\CookTorranceSub.hlsl(4,20): warning X4000: use of potentially uninitialized variable (CalculateBeckmann)
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DisneyPBRPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DisneyPBRVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DisneyPBRVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFMipMapPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DoFMipMapVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFMipMapVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\DoFVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\DoFVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\gaussianPS_H.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\gaussianPS_V.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\gaussianVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\gaussianVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\GrayscalePS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\GrayscaleVS.hlsl(3,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\GrayscaleVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\HemiSphereLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\HemiSphereLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\HemiSphereLightingVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\horrorPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\horrorVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\horrorVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\LimLightingPS.hlsl(12,11-61): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\LimLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\LimLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\LimLightingVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\MosaicPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\MosaicVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\MosaicVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PixelDirectionalLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\PixelDirectionalLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PixelDirectionalLightingVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PixelLightingBlinnPhongPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\PixelLightingBlinnPhongVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PixelLightingBlinnPhongVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\PointPixelLightingPS.hlsl(12,11-59): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PointPixelLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\PointPixelLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\PointPixelLightingVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\poterizePS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\poterizeVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\poterizeVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ProjectionShadow0PS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ProjectionShadow0VS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ProjectionShadow1PS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ProjectionShadow1VS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\RGBShiftPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\RGBShiftVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\RGBShiftVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\SpotLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\SpotLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\SpotLightingVS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_1PS.hlsl(16,11-61): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_1PS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_1VS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_1VS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_2PS.hlsl(17,11-61): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_2PS.hlsl(34,5-30): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_2PS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_2VS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_2VS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_3PS.hlsl(17,11-61): warning X3206: implicit truncation of vector type
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_3PS.hlsl(34,5-30): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_3PS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\Toon_3VS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\Toon_3VS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\unlitColorPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\unlitColorVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\unlitColorVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\unlitTexturePS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\unlitTextureVS.hlsl(3,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\unlitTextureVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\VertexDirectionalLightingPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\VertexDirectionalLightingVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\VertexDirectionalLightingVS.cso
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ZukeiPS.cso
+C:\Users\Akkarin\Desktop\SP31_test_2\shader\ZukeiVS.hlsl(4,34-36): warning X3578: Output value 'Out' is not completely initialized
+  
+  compilation object save succeeded; see C:\Users\Akkarin\Desktop\SP31_test_2\ZukeiVS.cso
+  Bloom.cpp
+  BumpField3D.cpp
+  Camera.cpp
+  CookTorrance.cpp
+  DepthShadow.cpp
+  DepthShadowField3D.cpp
+  DeferredSprite2D.cpp
+  GBufferField3D.cpp
+  GBufferPolygon.cpp
+  DisneyPBR.cpp
+  DoF.cpp
+  Field3D.cpp
+  Game.cpp
+  Gaussian.cpp
+  HemiSphereLighting.cpp
+  Horror.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx11.cpp
+  Generating Code...
+  Compiling...
+  imgui_impl_win32.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  keyboard.cpp
+  LimLighting.cpp
+C:\Users\Akkarin\Desktop\SP31_test_2\debugPrintf.h(1,1): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+  (compiling source file 'keyboard.cpp')
+  
+  main.cpp
+  Manager.cpp
+  model.cpp
+  Mosaic.cpp
+  PixelDirectionalLighting.cpp
+  PixelLightingBlinnPhong.cpp
+  PointPixelLighting.cpp
+  PolygonModel.cpp
+  posterise.cpp
+  ProjectionShadow.cpp
+  ProjectionShadowField3D.cpp
+  RGBShift.cpp
+  SpotLighting.cpp
+  Sprite2D.cpp
+  renderer.cpp
+C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(560,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(595,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Akkarin\Desktop\SP31_test_2\renderer.cpp(681,28): warning C4244: 'argument': conversion from 'float' to 'UINT8', possible loss of data
+  Generating Code...
+  Compiling...
+  sprite.cpp
+  texture.cpp
+  Toon_1.cpp
+  Toon_2.cpp
+  Toon_3.cpp
+  VertexDirectionalLighting.cpp
+  Generating Code...
+  LINK : C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe not found or not built by the last incremental link; performing full link
+DirectXTex_Debug.lib(DirectXTexImage.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexImage.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexWIC.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexWIC.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexD3D11.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexD3D11.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexUtil.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexUtil.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexConvert.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexConvert.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexCompress.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexCompress.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(DirectXTexMipMaps.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(DirectXTexMipMaps.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC4BC5.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC4BC5.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+DirectXTex_Debug.lib(BC6HBC7.obj) : warning LNK4099: PDB 'DirectXTex.pdb' was not found with 'DirectXTex_Debug.lib(BC6HBC7.obj)' or at 'C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\DirectXTex.pdb'; linking object as if no debug info
+  SP31Project.vcxproj -> C:\Users\Akkarin\Desktop\SP31_test_2\x64\Debug\SP31Project.exe
